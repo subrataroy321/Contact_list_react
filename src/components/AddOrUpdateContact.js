@@ -1,11 +1,17 @@
 import React from 'react'
+import styled from 'styled-components'
 
 function AddOrUpdateContact() {
     return (
-        <div>
-            <h1>Add Or Update Component</h1>
-        </div>
+        <AddOrUpdateWrapper>
+            <h3>Add Or Update Component</h3>
+        </AddOrUpdateWrapper>
     )
 }
 
 export default AddOrUpdateContact
+
+const AddOrUpdateWrapper = styled.div`
+    background-color: lightgreen;
+    color: white;
+`
