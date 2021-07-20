@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 function ContactList(props) {
+
+
     return (
         <ContactListWrapper>
             <div className="contacts-title">
@@ -14,7 +16,7 @@ function ContactList(props) {
             </div>
             {
                 props.contactsArray.map((contact)=> (
-                    <p className="contact">{contact.fname} {contact.lname}</p>
+                    <p onClick={() => props.selectContact(contact.id)} className={contact.id === props.contactToBeViewed ? "contact select-contact" : "contact"} >{contact.fname} {contact.lname}</p>
                 ))
             }
         </ContactListWrapper>
@@ -24,9 +26,12 @@ function ContactList(props) {
 export default ContactList
 
 const ContactListWrapper = styled.div`
+
+    background-color: #e3eeff;
+
     .add-icon {
         font-size: 25px;
-        color: lightgreen;
+        color: #428bff;
         margin-top: 7px;
 
     }
@@ -61,11 +66,12 @@ const ContactListWrapper = styled.div`
 
     }
     .contact:hover {
-        background-color: lightblue;
-    }
-    .contact:select {
-        background-color: blue;
+        background-color: #7cabf7;
         color: white
+    }
+    .select-contact {
+        background-color: #428bff;
+        color: white;
         font-weight: bold;
     }
 `

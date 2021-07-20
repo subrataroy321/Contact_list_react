@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './App.css'
 import styled from 'styled-components'
 
@@ -6,6 +6,9 @@ import ContactList from "./components/ContactList";
 import AddOrUpdateContact from "./components/AddOrUpdateContact";
 
 function App() {
+  const [contactToBeViewed, setContactToBeViewed] = useState()
+  const [isSelected, setIsSeleted] = useState(false)
+
 
   var contactsArray = [
     {
@@ -30,12 +33,17 @@ function App() {
       phone_numbers: ["6781234567", "4045676789"]
     },
   ]
+
+  const selectContact = (contact_id) => {
+    setContactToBeViewed(contact_id);
+    setIsSeleted(true);
+  }
   
   return (
     <MainContainer>
         <Body>
-            <ContactList contactsArray={contactsArray}/>
-            <AddOrUpdateContact contactsArray={contactsArray}/>
+            <ContactList contactsArray={contactsArray} selectContact={selectContact} isSelected={isSelected} contactToBeViewed={contactToBeViewed}/>
+            <AddOrUpdateContact contactsArray={contactsArray} contactToBeViewed={contactToBeViewed}/>
         </Body>
     </MainContainer>
   );
