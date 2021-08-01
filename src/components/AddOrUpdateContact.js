@@ -32,10 +32,10 @@ function AddOrUpdateContact(props) {
                         <tbody>
                             <tr>
                                 <td>
-                                    <input name="fname" type="text" class="form-control fname" id="fname" placeholder="First Name" value={contact ? contact.fname : ""}/>
+                                    <input name="fname" type="text" class="form-control fname" id="fname" placeholder="First Name" value={contact ? contact.firstName : ""}/>
                                 </td>
                                 <td>
-                                    <input name="lname" type="text" class="form-control lname" id="lname" placeholder="Last Name" value={contact ? contact.lname : ""}/>
+                                    <input name="lname" type="text" class="form-control lname" id="lname" placeholder="Last Name" value={contact ? contact.lastName : ""}/>
                                 </td>
                             </tr>
                             
@@ -62,10 +62,14 @@ function AddOrUpdateContact(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {   
+                            {   contact.phone_numbers
+                                ?
                                 contact.phone_numbers.map((email) => 
                                 <tr><td>{email}<RemoveCircleIcon className="remove-icon"/></td></tr>
-                            )}
+                                )
+                                :
+                                <tr></tr>
+                            }
                             <tr><td style={{color: "#428bff"}}><AddCircleIcon className="add-icon"/>add phone number</td></tr>
 
                         </tbody>
@@ -96,7 +100,7 @@ const AddOrUpdateWrapper = styled.div`
     background-color: #f0f0f0;
     color: black;
     font-size: 15px;
-
+    height: 105vh;
 `
 const ContactContainer = styled.div`
     padding: 50px;

@@ -14,26 +14,40 @@ function ContactList(props) {
                     <AddCircleIcon className="add-icon"/>
                 </div>
             </div>
-            {
-                props.contactsArray.map((contact)=> (
-                    <p onClick={() => props.selectContact(contact.id)} className={contact.id === props.contactToBeViewed ? "contact select-contact" : "contact"} >{contact.fname} {contact.lname}</p>
-                ))
-            }
+            <ContactsWrapper>
+                <div className="contacts">
+                    {
+                        props.contactsArray.map((contact)=> (
+                            <div onClick={() => props.selectContact(contact.id)} className={contact.id === props.contactToBeViewed ? "contact select-contact" : "contact"} >{contact.firstName} {contact.lastName}</div>
+                        ))
+                    }
+                </div>
+            </ContactsWrapper>
         </ContactListWrapper>
     )
 }
 
 export default ContactList
 
-const ContactListWrapper = styled.div`
+const ContactsWrapper = styled.div`
+    
 
+`
+const ContactListWrapper = styled.div`
     background-color: #e3eeff;
+
+    .contacts {
+        overflow-y: scroll;
+        height: 100vh;
+        padding-bottom: 20px;
+        scroll-behavior: smooth;
+    }
 
     .add-icon {
         font-size: 25px;
         color: #428bff;
         margin-top: 7px;
-
+        cursor: pointer;
     }
     .contacts-title {
         height: 70px;
@@ -57,7 +71,8 @@ const ContactListWrapper = styled.div`
 
     .contact {
         display: flex;
-        height: 50px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         width: 100%;
         border-bottom: 0.1px solid lightgray;
         font-size: 23px;
